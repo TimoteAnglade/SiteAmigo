@@ -150,7 +150,7 @@ footer {
 footer a {
     color: white; /* Couleur des liens */
     text-decoration: none; /* Suppression du soulignement */
-    margin: 0 10px; /* Marge entre les liens */
+    margin: 0 40px; /* Marge entre les liens */
 }
 
 footer a:hover {
@@ -183,4 +183,9 @@ footer a:hover {
 
 .pasdepoints {
     list-style-type: none;
+}
+
+.footer,a{
+    margin-left: 2px;
+    margin-right: 2px;
 }
