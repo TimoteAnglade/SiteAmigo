@@ -1,20 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
 </style>
+<div class="test">
+    <div class="divbody">
+        <div class="container">
+            <h1 class="">Qu'est-ce que la MIAGE</h1>
+            <p class="textecentre">La MIAGE (Méthodes Informatiques Appliquées à la Gestion des Entreprises) est un cursus universitaire pluridisciplinaire axé sur l'application des technologies de l'information et de la communication dans le domaine de la gestion des entreprises. Son objectif est de former des professionnels capables de comprendre les enjeux liés à l'informatique et à la gestion, et d'élaborer des solutions informatiques innovantes pour répondre aux besoins des entreprises.</p>
+            <ul class="textecentre">
+                <li>Excellence : Nous nous engageons à offrir une formation de haute qualité, en accord avec les standards académiques les plus élevés.</li>
+                <li>Intégrité : Nous agissons avec intégrité, honnêteté et transparence dans toutes nos interactions avec nos étudiants, notre personnel et nos partenaires.</li>
+                <li>Innovation : Nous encourageons l'innovation et la créativité, et nous soutenons les projets et les initiatives qui contribuent à l'avancement de la MIAGE.</li>
+                <li>Collaboration : Nous favorisons la collaboration entre étudiants, enseignants, chercheurs et professionnels, afin de créer un environnement d'apprentissage dynamique et enrichissant.</li>
+                <li>Engagement : Nous sommes engagés à soutenir nos étudiants tout au long de leur parcours académique et professionnel, en leur offrant un accompagnement personnalisé et des opportunités de développement.</li>
+            </ul>
+            <hr class="style14">
+            <h2>Les spécialisations</h2>
+            <div class="d-flex justify-content-between mt-3 align-self-stretch">
+                <div class="card">
+                    <div class="card-details">
+                        <p class="text-title">SISMA</p>
+                        <p class="text-body">Systèmes d'information des métiers du social et de l'assurance</p>
+                        <p>Née de la collaboration université-entreprise, répond à un important besoin régional d’ingénieurs informaticiens ayant également une solide compétence métier dans le secteur des assurances, du social et de la banque. Ce parcours forme aux fonctions d’assistant à la maîtrise d’ouvrage pour le compte de banques et de sociétés d’assurance, de retraite, de prévoyance.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-details">
+                        <p class="text-title">SIR</p>
+                        <p class="text-body">Systèmes d'information répartis</p>
+                        <p> Propose d’acquérir, en complément des compétences communes, des compétences de haut niveau en matière de répartition des systèmes d’informations (étude, développement et déploiement de solutions applicatives et techniques réparties), incluant les aspects cloud, sécurités et big data</p>
+                    </div>
+                </div>
+            </div>
+            <h2>Contact</h2>
+            <p class="textecentre horaires">Ouvert du lundi au vendredi (9h-17h)</p>
+            <div class="container">
+                <!-- Horaires -->
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <h4>Responsable Miage Orléans</h4>
+                        <p>Email: <a href="mailto:khalil.djelloul@univ-orleans.fr" style="color: blue;">khalil.djelloul@univ-orleans.fr</a></p>
+                        <p>Téléphone: +33 456 789 123</p>
+                    </div>
+                </div>
+                <!-- Informations de contact pour le professeur responsable -->
+                <div class="row mt-4 d-flex justify-content-between">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Développement/Projet AMIGO/Docker/symfony-docker-main/src/Controller/PagesController.php</code></li>
-        <li>Your template at <code>C:/Développement/Projet AMIGO/Docker/symfony-docker-main/templates/pages/index.html.twig</code></li>
-    </ul>
+                    <div class="col-md-4">
+                        <h4>Professeur Responsable L3</h4>
+                        <p>Email: <a href="mailto:responsable.l3@example.com" style="color: blue;">responsable.l3@example.com</a></p>
+                        <p>Téléphone: +33 123 456 789</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Professeur Responsable M1</h4>
+                        <p>Email: <a href="mailto:jean-michel.couvreur@univ-orleans.fr" style="color: blue;">jean-michel.couvreur@univ-orleans.fr</a></p>
+                        <p>Téléphone: +33 987 654 321</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Professeur Responsable M2</h4>
+                        <p>Email: <a href="mailto:responsable.m2@example.com" style="color: blue;">responsable.m2@example.com</a></p>
+                        <p>Téléphone: +33 456 789 123</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

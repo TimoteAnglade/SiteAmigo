@@ -1,3 +1,186 @@
-body {
-    background-color: skyblue;
+.d-flex {
+    display: flex;
+    justify-content: space-between; /* Ajout de l'espace entre les cartes */
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.div-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer horizontalement pour les images */
+}
+
+.card {
+    width: 45%; /* Ajustement de la largeur des cartes pour l'espace entre elles */
+    border-radius: 20px;
+    background: #f5f5f5;
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+    margin-bottom: 20px;
+    height: 300px; /* Hauteur fixe pour toutes les cartes */
+}
+
+.card-details {
+    color: black;
+    gap: .5em;
+    display: grid;
+    place-content: center;
+    height: 100%; /* Remplir la hauteur de la carte */
+}
+
+.taille-img {
+    height: 50px;
+    width: 50px;
+}
+
+.texte-img {
+    margin-top: 10px;
+}
+
+.image-texte {
+    display: flex;
+    align-items: center;
+}
+
+
+.test{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.divbody{
+    font-family: Arial, sans-serif;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+
+}
+
+.textecentre {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+li:before {
+    content: "•";
+    color: #4c58ae;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+hr.style14 {
+    border: 0;
+    height: 3px;
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+
+/*Text*/
+.text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*Hover*/
+.card:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+}
+
+/* Media Queries pour la responsivité */
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 0 10px; /* Réduire le padding pour les petits écrans */
+    }
+
+    .card {
+        width: 100%; /* Utilisation de 100% de la largeur */
+        margin-bottom: 10px; /* Ajout d'un espacement entre les cartes */
+        height: auto; /* Réinitialiser la hauteur pour qu'elle s'ajuste au contenu */
+    }
+
+    .textecentre {
+        width: 100%; /* Utilisation de 100% de la largeur */
+    }
+}
+
+/* Style pour les horaires */
+.horaires {
+    color: #6c757d; /* Couleur grise */
+    font-style: italic; /* Police italique */
+}
+
+footer {
+    background-color: #343a40; /* Couleur de fond du footer */
+    color: white; /* Couleur du texte */
+    padding: 20px; /* Espacement intérieur */
+    text-align: center; /* Centrage du contenu */
+    width: 100%; /* Prend toute la largeur de la page */
+    position: relative;/* Le fixer en bas de la fenêtre */
+    bottom: 0; /* Position en bas */
+    left: 0; /* Position à gauche */
+}
+
+footer a {
+    color: white; /* Couleur des liens */
+    text-decoration: none; /* Suppression du soulignement */
+    margin: 0 10px; /* Marge entre les liens */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Soulignement au survol */
+}
+
+/* Media Queries pour les tablettes */
+@media only screen and (max-width: 1029px) {
+    .d-flex {
+        flex-direction: column; /* Changer la direction des cartes en colonnes */
+        align-items: center; /* Centrer horizontalement */
+    }
+
+    .card {
+        width: 80%; /* Utilisation de 80% de la largeur */
+        margin-bottom: 20px; /* Espacement entre les cartes */
+    }
+}
+
+.contenu{
+    margin-top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.navbar-brand {
+    padding-left: 2%;
+}
+
+.pasdepoints {
+    list-style-type: none;
 }
