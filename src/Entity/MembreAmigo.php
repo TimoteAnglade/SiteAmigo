@@ -25,6 +25,15 @@ class MembreAmigo
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
 
+    #[ORM\Column(length: 500)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $mail = null;
+
+    #[ORM\Column(length: 25)]
+    private ?string $niveau = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,6 +90,42 @@ class MembreAmigo
     public function setPhoto(string $photo): static
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): static
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    public function getNiveau(): ?string
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(string $niveau): static
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }

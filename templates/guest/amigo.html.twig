@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center">Qu'est-ce que l'AMIGO</h1>
+            <p class="text-center">L'Association des MIAGE d'Orléans, connue sous le nom d'AMIGO, est un pilier dynamique au sein de la communauté étudiante. Fondée sur les principes de solidarité, d'innovation et d'entraide, AMIGO offre un espace inclusif où les étudiants en MIAGE peuvent s'épanouir tant sur le plan académique que social. En organisant des événements culturels, des formations professionnelles et des activités ludiques, AMIGO favorise l'échange de connaissances et le développement de compétences, tout en renforçant les liens entre ses membres et le monde professionnel. Reconnue pour son engagement et sa convivialité, l'association AMIGO incarne la passion et l'esprit de collaboration qui caractérisent la MIAGE d'Orléans.</p>
+            <h2 class="text-left">Membres de l'AMIGO</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8" id="carousel-container">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% set first = true %}
+                    {% for membre in membres %}
+                        {% if first %}
+                            <div class="carousel-item active">
+                            {% set first = false %}
+                        {% else %}
+                            <div class="carousel-item">
+                        {% endif %}
+                            <img src="{{ asset( membre.photo ) }}" class="d-block rounded-circle mx-auto" alt="Profile 1">
+                            <div class="info">
+                                <h3>{{ membre.prenom}} {{ membre.nom}}</h3>
+                                <p class="paragraphe">{{ membre.description}}</p>
+                                <p><a href="mailto:{{ membre.mail }}">{{ membre.mail }}</a></p>
+                                <p>{{ membre.niveau }}</p>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon text-dark" aria-hidden="true"><</span>
+                    <span class="sr-only">Précédent</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon text-dark" aria-hidden="true">></span>
+                    <span class="sr-only">Suivant</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}
