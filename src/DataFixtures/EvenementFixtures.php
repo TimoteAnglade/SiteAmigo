@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Evenement;
-use App\Entity\LieuEvenement;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -16,8 +15,8 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
 
         $ndi->setNom("Nuit de l'info 2023")
             ->setDate(date_create("2023-12-07"))
-            ->setAffiche("/images/affiches/NDI2023.png")
-            ->setAfficheFerme("/images/affichesFerme/NDI2023.png")
+            ->setAffiche("/images/affiche/ndi2023.png")
+            ->setAfficheFerme("/images/affichesFerme/ndi2023.png")
             ->setTarifLibre(0)
             ->setTarifMembre(0)
             ->setPlacesRestantes(100)
@@ -29,8 +28,29 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
         $troisIA = $this->getReference('3IA');
         $ndi->setALieuA($troisIA);
 
-
         $manager->persist($ndi);
+
+        $billard = new Evenement();
+
+        $billard->setNom("Evenement billard Miage/Entreprise")
+            ->setDate(date_create("2022-11-24"))
+            ->setAffiche("/images/affiche/billard2022.png")
+            ->setAfficheFerme("/images/affichesFerme/ndi2023.png")
+            ->setTarifLibre(2)
+            ->setTarifMembre(3)
+            ->setPlacesRestantes(-1)
+            ->setDescription("L’AMIGO a l’honneur de vous convier à son deuxième challenge MIAGE - ENTREPRISE, c’est autour d’un tournoi de Billard que ça se passera cette fois ci.")
+            ->setDatePublication(date_create("2022-11-10"))
+            ->setDateLimiteInscription(date_create("2022-11-17"));
+
+        $factory = $this->getReference('factory');
+        $billard->setALieuA($factory);
+
+        $sopra = $this->getReference('sopra');
+        $billard->addEntreprisesParticipante($sopra);
+
+
+        $manager->persist($billard);
 
         $manager->flush();
     }

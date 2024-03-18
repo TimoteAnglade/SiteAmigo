@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use function PHPUnit\Framework\isEmpty;
 
 #[ORM\Entity(repositoryClass: EvenementRepository::class)]
 class Evenement
@@ -38,7 +39,7 @@ class Evenement
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lienInscription = null;
+    private ?string $lienInscription = "";
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateLimiteInscription = null;
@@ -51,7 +52,7 @@ class Evenement
 
     #[ORM\OneToOne(inversedBy: 'evenements', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?lieuEvenement $aLieuA = null;
+    private ?LieuEvenement $aLieuA = null;
 
     #[ORM\ManyToMany(targetEntity: Entreprise::class, mappedBy: 'entrepriseEvenement')]
     private Collection $entreprisesParticipantes;
@@ -243,4 +244,25 @@ class Evenement
 
         return $this;
     }
+
+    public function getDateString(): string {
+        return $this->date->format("d/m/Y");
+    }
+
+    public function getDatePublicationString(): string {
+        return $this->date->format("d/m/Y");
+    }
+
+    public function getDateLimiteInscriptionString(): string {
+        return $this->date->format("d/m/Y");
+    }
+
+    public function getIsLien(): bool {
+        return !isEmpty($this->lienInscription);
+    }
+
+    public function getNbEntreprises(): bool {
+        return sizeof($this->getEntreprisesParticipantes());
+    }
+
 }

@@ -39,10 +39,10 @@ class Entreprise
     #[ORM\OneToMany(targetEntity: OffreEmploi::class, mappedBy: 'parEntreprise', orphanRemoval: true)]
     private Collection $offreEmplois;
 
-    #[ORM\ManyToMany(targetEntity: tags::class, inversedBy: 'Entreprise_id')]
+    #[ORM\ManyToMany(targetEntity: Tags::class, inversedBy: 'entreprises')]
     private Collection $tagsEntreprise;
 
-    #[ORM\ManyToMany(targetEntity: evenement::class, inversedBy: 'entreprisesParticipantes')]
+    #[ORM\ManyToMany(targetEntity: Evenement::class, inversedBy: 'entreprisesParticipantes')]
     private Collection $entrepriseEvenement;
 
     public function __construct()

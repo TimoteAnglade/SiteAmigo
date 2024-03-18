@@ -1,0 +1,71 @@
+* {
+    --text: #0e0f10;
+    --background: #f5f5f5;
+    --primary: #3F4E9E;
+    --secondary: #a8acc2;
+    --accent: #9398b9;
+}
+
+.gros-evenements {
+    margin-bottom: 35px;
+}
+
+.conteneur-gros-evenements {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.gros-evenement {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    background-color: var(--accent);
+    outline: var(--primary) 3px;
+    outline-style: solid;
+    margin: 5px 5px 5px 5px;
+}
+.moitie {
+    width: 50%;
+    padding: 15px 15px 15px 15px;
+}
+
+.moitie img {
+    width: 100%;
+}
+
+.petit-texte {
+    font-size: 80%;
+}
+
+.petit-titre {
+    font-size: 110%;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tag {
+    background-color: var(--primary);
+    color: var(--background);
+    display: flex;
+    align-items: center;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 17px;
+    justify-content: center;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin: 0 5px 0 0;
+    display: inline-block;
+    background-size: contain;
+}

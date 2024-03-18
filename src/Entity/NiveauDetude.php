@@ -30,7 +30,7 @@ class NiveauDetude
 
     #[ORM\ManyToOne(inversedBy: 'niveauDetudes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?typePrestation $typePrestation = null;
+    private ?TypePrestation $typePrestation = null;
 
     public function __construct()
     {

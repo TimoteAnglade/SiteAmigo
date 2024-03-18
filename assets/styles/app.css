@@ -71,6 +71,10 @@ body {
     align-items: center;
 }
 
+.col-md-4 {
+    width: 50%;
+    text-align: center;
+}
 
 .test{
     width: 80%;

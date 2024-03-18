@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    <link href="/css/entreprises.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block body %}
+    <h1 class="page-title">Les entreprises associées</h1>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Entrer un nom d'entreprise">
+        <button class="search-button">Rechercher</button>
+    </div>
+    {% set compteur = 0 %}
+    {% for entreprise in entreprises %}
+        <div class="container-entreprise">
+            <div class="entreprise-card">
+                <div class="image-container">
+                    <img src="{{ entreprise.logo }}" alt="{{ entreprise.nom }}">
+                </div>
+                <div class="info-container">
+                    <div class="textes">
+                        <h2>{{ entreprise.nom }}</h2>
+                        <div class="tags">
+                            {% for tag in entreprise.tagsEntreprise %}
+                                <div class="tag"><span class="dot" style="background-color: #{{ tag.couleur }}"></span>{{ tag.libelle }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="social-links">
+                            <a href="{{ entreprise.site }}">Visiter leur site</a>
+                        </div>
+                        <p class="afficherplus" id="details{{ compteur }}">{{ entreprise.description }}</p>
+                    </div>
+                    <!-- Bouton collapsible -->
+                    <div class="collapsible" id="fleche{{ compteur }}" onclick="toggleVisibility('details{{ compteur }}', 'fleche{{ compteur }}')">↓</div>
+                </div>
+            </div>
+        </div>
+        {% set compteur = compteur + 1 %}
+    {% endfor %}
+    <!-- Script pour le collapsible -->
+    <script>
+        let collapsed = true;
+        function toggleVisibility(truc1, truc2) {
+            let div1 = document.getElementById(truc1);
+            let div2 = document.getElementById(truc2);
+            if(collapsed) {
+                collapsed = false;
+                div1.style.display = "block";
+                div2.innerHTML = "↑"
+            } else {
+                collapsed = true;
+                div1.style.display = "none";
+                div2.innerHTML = "↓"
+            }
+        }
+    </script>
+
+
+{% endblock %}

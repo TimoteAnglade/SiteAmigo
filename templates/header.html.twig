@@ -1,19 +1,19 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="{{ path('accueil') }}">
+        <a class="navbar-brand" href="{{ path('amigo') }}">
             <img src="{{ asset('images/assets/logoAmigo.png') }}" alt="Amigo" height="40">
             Accueil
         </a>
 
         <ul class="navbar-nav ms-auto navbar-expand"> <!-- ms-auto pour aligner à droite -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('amigo') }}">À propos</a>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('miage') }}">Miage</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Evènements</a>
+                <a class="nav-link" href="{{ path('evenements') }}">Evènements</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Entreprises</a>
+                <a class="nav-link" href="{{ path('entreprises') }}">Entreprises</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Offre d'emplois</a>

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+{% block stylesheets %}
+    <link href="/css/evenement.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block body %}
+    <div class="gros-evenements">
+        {% for paire in upcoming %}
+                <div class="conteneur-gros-evenements">
+            {% for event in paire %}
+                <div class="gros-evenement">
+                    <div class="moitie">
+                        <img src="{{ event.affiche }}">
+                    </div>
+                    <div class="moitie">
+                        <h1>{{ event.nom}}</h1>
+                        <p><span>Date de l'évènement: {{ event.dateString }}</span></p>
+                        <p><span class="petit-titre">Emplacement de l'évènement:</span> <br/>{{ event.aLieuA.nom }}<br/><span class="petit-texte">{{ event.aLieuA.adresse }}</span></p>
+                        {% if(event.isLien) %}
+                        <a href="{{ event.lienInscription }}">Inscription</a>
+                        {% endif %}
+                        <br>
+                        {% if event.nbEntreprises != 0 %}
+                            <p><span>Entreprises participantes : </span></p>
+                            <div class="tags">
+                                {% for entreprise in event.entreprisesParticipantes %}
+                                        <div class="tag">
+                                            <span class="dot" style="background-image: url('{{ entreprise.logo }}');"></span>{{ entreprise.nom }}
+                                        </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="listesPasses"> <!-- ⌃ -->
+        {% set compteur = 0 %}
+        {% for annee in past %}
+            <a onclick="developper({{ compteur }}, {{ annees[compteur] }})">⌄ {{ annees[compteur] }}</a>
+            {% set compteur = compteur + 1 %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Entreprise;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class EntrepriseFixtures extends Fixture
+class EntrepriseFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -18,12 +19,18 @@ class EntrepriseFixtures extends Fixture
             ->setLogo("/images/logoEntreprise/sopra.png")
             ->setAffiliee(true)
             ->setDescription("Sopra Steria est une entreprise de services du numérique (ESN) française et une société de conseil en transformation numérique des entreprises et des organisations.\n\nSopra Steria est le fruit de la fusion en janvier 2015 des deux entreprises françaises de services numériques Sopra et Steria, créées respectivement en 1968 et 1969. En 2020, le groupe compte 46 000 salariés répartis dans plus de 30 pays dont 20 000 en France, et réalise en 2020 un chiffre d'affaires de 4,3 milliards d'euros.")
-            ->setTelephone("0238523737");
+            ->setTelephone("0238523737")
+            ->addTagsEntreprise($this->getReference('tagESN'))
+            ->addTagsEntreprise($this->getReference('tagOrleans'));
         $manager->persist($sopra);
 
         $this->setReference('sopra',$sopra);
 
 
         $manager->flush();
+    }
+    public function getDependencies(): array
+    {
+        return [TagsFixtures::class];
     }
 }

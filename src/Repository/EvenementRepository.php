@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Evenement;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,8 @@ class EvenementRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Evenement::class);
     }
+
+
 
 //    /**
 //     * @return Evenement[] Returns an array of Evenement objects
@@ -45,4 +48,31 @@ class EvenementRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    /**
+    //     * @return Evenement[] Retourne les évènements à venir
+    //     */
+    public function getUpcoming(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere("e.date >= :now")
+            ->orderBy('e.date')
+            ->setParameter('now', new DateTime('now'))
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+    //     * @return Evenement[] Retourne les évènements passés
+    //     */
+    public function getPast(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere("e.date < :now")
+            ->orderBy('e.date')
+            ->setParameter('now', new DateTime('now'))
+            ->getQuery()
+            ->getResult();
+    }
+
 }

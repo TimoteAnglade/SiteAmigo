@@ -21,7 +21,7 @@ class OffreEmploi
 
     #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?niveauDetude $pourNiveauDetude = null;
+    private ?NiveauDetude $pourNiveauDetude = null;
 
     #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
     #[ORM\JoinColumn(nullable: false)]
@@ -63,12 +63,12 @@ class OffreEmploi
         return $this;
     }
 
-    public function getPourNiveauDetude(): ?niveauDetude
+    public function getPourNiveauDetude(): ?NiveauDetude
     {
         return $this->pourNiveauDetude;
     }
 
-    public function setPourNiveauDetude(?niveauDetude $pourNiveauDetude): static
+    public function setPourNiveauDetude(?NiveauDetude $pourNiveauDetude): static
     {
         $this->pourNiveauDetude = $pourNiveauDetude;
 
