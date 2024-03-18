@@ -32,6 +32,15 @@ class PagesController extends textesDynamiquesController
         ]);
     }
 
+    #[Route('/offresetalternances', name: 'offresetalternances')]
+    public function offres(TexteDynamiqueRepository $repoTextes): Response
+    {
+        return $this->render('guest/offres_stages_alternances.html.twig', [
+            'controller_name' => 'PagesController',
+            'textes' => $this->getTextesDico($repoTextes, "offresetalternances"),
+        ]);
+    }
+
     #[Route('/evenements', name: 'evenements')]
     public function evenements(TexteDynamiqueRepository $repoTextes, EvenementRepository $evenements): Response
     {
