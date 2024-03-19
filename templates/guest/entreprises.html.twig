@@ -39,18 +39,15 @@
     {% endfor %}
     <!-- Script pour le collapsible -->
     <script>
-        let collapsed = true;
         function toggleVisibility(truc1, truc2) {
             let div1 = document.getElementById(truc1);
             let div2 = document.getElementById(truc2);
-            if(collapsed) {
-                collapsed = false;
-                div1.style.display = "block";
-                div2.innerHTML = "↑"
-            } else {
-                collapsed = true;
+            if(div1.style.display === "block") {
                 div1.style.display = "none";
                 div2.innerHTML = "↓"
+            } else {
+                div1.style.display = "block";
+                div2.innerHTML = "↑"
             }
         }
     </script>
