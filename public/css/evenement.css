@@ -4,6 +4,7 @@
     --primary: #3F4E9E;
     --secondary: #a8acc2;
     --accent: #9398b9;
+    font-weight: 600;
 }
 
 .gros-evenements {
@@ -68,4 +69,38 @@
     margin: 0 5px 0 0;
     display: inline-block;
     background-size: contain;
+}
+
+.carte-event {
+    display: flex;
+    align-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 250px;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px hsla(0, 0%, 0%, 0.35) ;
+}
+
+.carte-event img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.liste-event {
+    display: flex;
+
+}
+
+.lien-div {
+    color: hsla(0, 0%, 0%, .80);
+    cursor: pointer;
+}
+
+.lien-div:hover {
+    color: blue;
+}
+
+.carte-event p {
+    margin: 0;
 }
