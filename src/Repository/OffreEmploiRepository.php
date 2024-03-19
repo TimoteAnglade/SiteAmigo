@@ -45,4 +45,14 @@ class OffreEmploiRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findByNiveauDetude($niveau): ?OffreEmploi
+    {
+        return $this->createQueryBuilder('o')
+            ->join('NiveauDetude', 'n')
+            ->andWhere('n.libelle = :niv')
+            ->setParameter('niv', $niveau)
+            ->getQuery()
+            ->getResult();
+    }
 }

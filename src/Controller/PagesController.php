@@ -6,12 +6,18 @@ use App\Entity\Entreprise;
 use App\Repository\EntrepriseRepository;
 use App\Repository\EvenementRepository;
 use App\Repository\MembreAmigoRepository;
+use App\Repository\OffreEmploiRepository;
 use App\Repository\TexteDynamiqueRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class PagesController extends textesDynamiquesController
 {
+
+   public function __construct (protected RequestStack $requestStack) {
+   }
 
     #[Route('/', name: 'amigo')]
     public function amigo(TexteDynamiqueRepository $repoTextes, MembreAmigoRepository $membres): Response
@@ -33,11 +39,23 @@ class PagesController extends textesDynamiquesController
     }
 
     #[Route('/offresetalternances', name: 'offresetalternances')]
-    public function offres(TexteDynamiqueRepository $repoTextes): Response
+    public function offres(TexteDynamiqueRepository $repoTextes, OffreEmploiRepository $repoOffres): Response
     {
+        $requete = $this->requestStack->getCurrentRequest();
+        $niveau = $requete->get('niveau');
+        dump($niveau);
+        if(is_null($niveau)) {
+            $offresRecherchees = $repoOffres->findAll();
+        } else {
+            $offresRecherchees = $repoOffres->findByNiveauDetude($niveau);
+        }
+
+
+
         return $this->render('guest/offres_stages_alternances.html.twig', [
             'controller_name' => 'PagesController',
             'textes' => $this->getTextesDico($repoTextes, "offresetalternances"),
+            'offres' => $offresRecherchees,
         ]);
     }
 
@@ -100,6 +118,12 @@ class PagesController extends textesDynamiquesController
     {
 
         $entreprises = $repoEntreprises->findAll();
+        $entreprises[] = $entreprises[0];
+        $entreprises[] = $entreprises[0];
+        $entreprises[] = $entreprises[0];
+        $entreprises[] = $entreprises[0];
+        $entreprises[] = $entreprises[0];
+
 
         return $this->render('guest/entreprises.html.twig', [
             'controller_name' => 'PagesController',
@@ -107,4 +131,12 @@ class PagesController extends textesDynamiquesController
             'entreprises' => $entreprises,
         ]);
     }
+
+    #[Route('/tempo', name: 'tempo')]
+    public function tempo(): Response
+    {
+        return $this->render('guest/tempo.html.twig', [
+        ]);
+    }
+
 }

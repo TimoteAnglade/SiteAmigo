@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240316000721 extends AbstractMigration
+final class Version20240318163519 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -36,10 +36,12 @@ final class Version20240316000721 extends AbstractMigration
         $this->addSql('CREATE TABLE membre_amigo (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nom VARCHAR(50) NOT NULL, prenom VARCHAR(50) NOT NULL, poste VARCHAR(50) NOT NULL, photo VARCHAR(255) NOT NULL, description VARCHAR(500) NOT NULL, mail VARCHAR(255) NOT NULL, niveau VARCHAR(25) NOT NULL)');
         $this->addSql('CREATE TABLE niveau_detude (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, type_prestation_id INTEGER NOT NULL, libelle VARCHAR(15) NOT NULL, debut_stage DATE NOT NULL, fin_stage DATE NOT NULL, CONSTRAINT FK_5D6F1149EEA87261 FOREIGN KEY (type_prestation_id) REFERENCES type_prestation (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');
         $this->addSql('CREATE INDEX IDX_5D6F1149EEA87261 ON niveau_detude (type_prestation_id)');
-        $this->addSql('CREATE TABLE offre_emploi (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, pour_niveau_detude_id INTEGER NOT NULL, par_entreprise_id INTEGER NOT NULL, nom_poste VARCHAR(255) NOT NULL, description VARCHAR(300) NOT NULL, CONSTRAINT FK_132AD0D1475A44C7 FOREIGN KEY (pour_niveau_detude_id) REFERENCES niveau_detude (id) NOT DEFERRABLE INITIALLY IMMEDIATE, CONSTRAINT FK_132AD0D14EEDDEE6 FOREIGN KEY (par_entreprise_id) REFERENCES entreprise (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');
+        $this->addSql('CREATE TABLE offre_emploi (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, pour_niveau_detude_id INTEGER NOT NULL, par_entreprise_id INTEGER NOT NULL, nom_poste VARCHAR(255) NOT NULL, description VARCHAR(300) NOT NULL, mail_contact VARCHAR(255) NOT NULL, CONSTRAINT FK_132AD0D1475A44C7 FOREIGN KEY (pour_niveau_detude_id) REFERENCES niveau_detude (id) NOT DEFERRABLE INITIALLY IMMEDIATE, CONSTRAINT FK_132AD0D14EEDDEE6 FOREIGN KEY (par_entreprise_id) REFERENCES entreprise (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');
         $this->addSql('CREATE INDEX IDX_132AD0D1475A44C7 ON offre_emploi (pour_niveau_detude_id)');
         $this->addSql('CREATE INDEX IDX_132AD0D14EEDDEE6 ON offre_emploi (par_entreprise_id)');
         $this->addSql('CREATE TABLE tags (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, libelle VARCHAR(50) NOT NULL, couleur VARCHAR(7) NOT NULL)');
+        $this->addSql('CREATE TABLE texte_dynamique (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, contenu VARCHAR(1500) NOT NULL, code VARCHAR(100) NOT NULL, page VARCHAR(25) NOT NULL)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_4A340F9377153098 ON texte_dynamique (code)');
         $this->addSql('CREATE TABLE type_prestation (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, libelle VARCHAR(15) NOT NULL)');
         $this->addSql('CREATE TABLE type_requete (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, type_requete VARCHAR(6) NOT NULL, nom_table VARCHAR(50) NOT NULL)');
         $this->addSql('CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, username VARCHAR(180) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
@@ -67,6 +69,7 @@ final class Version20240316000721 extends AbstractMigration
         $this->addSql('DROP TABLE niveau_detude');
         $this->addSql('DROP TABLE offre_emploi');
         $this->addSql('DROP TABLE tags');
+        $this->addSql('DROP TABLE texte_dynamique');
         $this->addSql('DROP TABLE type_prestation');
         $this->addSql('DROP TABLE type_requete');
         $this->addSql('DROP TABLE user');

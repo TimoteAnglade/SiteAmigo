@@ -225,4 +225,17 @@ class Entreprise
 
         return $this;
     }
+
+    public function getTelephoneEspace(): ?string {
+        $result = "";
+        for($i=0; $i<strlen($this->telephone);$i++)
+        if($i%2==0) {
+            if($i==strlen($this->telephone)-2){
+                $result=$result.$this->telephone[$i].$this->telephone[$i+1];
+            } else {
+                $result=$result.$this->telephone[$i].$this->telephone[$i+1]." ";
+            }
+        }
+        return $result;
+    }
 }

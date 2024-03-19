@@ -25,7 +25,11 @@ class OffreEmploi
 
     #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?entreprise $parEntreprise = null;
+    private ?Entreprise $parEntreprise = null;
+
+    #[ORM\Column(length: 255)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?string $mailContact = null;
 
     public function getId(): ?int
     {
@@ -75,14 +79,26 @@ class OffreEmploi
         return $this;
     }
 
-    public function getParEntreprise(): ?entreprise
+    public function getParEntreprise(): ?Entreprise
     {
         return $this->parEntreprise;
     }
 
-    public function setParEntreprise(?entreprise $parEntreprise): static
+    public function setParEntreprise(?Entreprise $parEntreprise): static
     {
         $this->parEntreprise = $parEntreprise;
+
+        return $this;
+    }
+
+    public function getMailContact(): ?string
+    {
+        return $this->mailContact;
+    }
+
+    public function setMailContact(string $mailContact): static
+    {
+        $this->mailContact = $mailContact;
 
         return $this;
     }

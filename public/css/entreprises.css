@@ -35,11 +35,11 @@ body {
 .entreprise-card {
     width: 50%;
     margin: 20px auto;
-    background-color: var(--background);
+    background-color: hsla(0, 0%, 0%, .05);
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
     border-radius: 15px;
     overflow: hidden;
     display: flex;
-    border: black solid 2px;
 }
 
 .image-container {

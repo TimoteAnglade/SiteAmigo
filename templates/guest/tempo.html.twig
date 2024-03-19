@@ -1,0 +1,67 @@
+<style>
+    .container {
+        position: relative;
+        width: 30%;
+        height: 400px; /* Hauteur de la section */
+        background-image: url('{{ asset('images/logoEntreprise/sopra.png') }}');
+        background-size: cover;
+        background-position: center;
+        overflow: hidden; /* Pour cacher le débordement de l'image */
+        border-radius: 10px; /* Coins arrondis */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ombre légère sur tous les côtés */
+        transition: box-shadow 0.3s; /* Transition pour l'effet de survol */
+    }
+
+    .container:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Ombre légèrement plus prononcée au survol */
+    }
+
+    .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translateY(30px);
+        text-align: center;
+        color: #000; /* Couleur du texte */
+        transition: 1s ease-out; /* Transition pour l'effet de survol */
+        opacity: 0; /* Par défaut, le contenu est caché */
+        border-radius: 15px;
+        padding: 5px;
+        background-color: hsla(0, 0%, 0%, .15);
+        backdrop-filter: invert();
+    }
+
+    .container:hover .content {
+        opacity: 1; /* Affiche le contenu au survol */
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+
+    .container:hover .permanent {
+        transform: translate(-50%, -50%) translateY(-20px);
+        color: white;
+        background-color: hsla(0, 0%, 0%, .5);
+    }
+
+    .container .permanent {
+        color: black;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transition: 1s ease-out; /* Transition pour l'effet de survol */
+        transform: translate(-50%, -50%) translateY(0%);
+        background-color: hsla(0, 0%, 0%, 0);
+        border-radius: 15px;
+        padding: 5px;
+    }
+</style>
+
+<div class="container">
+    <div class="content">
+        <h1>Nom de l'entreprise</h1>
+        <p>Description de l'entreprise</p>
+        <p>Moyen de contacter</p>
+    </div>
+    <div class="permanent">Alternance développeur java</div>
+</div>
+
+

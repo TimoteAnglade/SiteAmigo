@@ -37,6 +37,8 @@ class NiveauDetudeFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($m2);
 
         $this->setReference('l3',$l3);
+        $this->setReference('m1',$m1);
+        $this->setReference('m2',$m2);
 
         $manager->flush();
     }

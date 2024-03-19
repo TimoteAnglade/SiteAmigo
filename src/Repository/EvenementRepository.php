@@ -56,7 +56,7 @@ class EvenementRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('e')
             ->andWhere("e.date >= :now")
-            ->orderBy('e.date')
+            ->orderBy('e.date', 'desc')
             ->setParameter('now', new DateTime('now'))
             ->getQuery()
             ->getResult();
@@ -69,7 +69,7 @@ class EvenementRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('e')
             ->andWhere("e.date < :now")
-            ->orderBy('e.date')
+            ->orderBy('e.date', 'desc')
             ->setParameter('now', new DateTime('now'))
             ->getQuery()
             ->getResult();
