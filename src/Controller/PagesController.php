@@ -139,4 +139,11 @@ class PagesController extends textesDynamiquesController
         ]);
     }
 
+    #[Route('/evenementDetails', name: 'evenementDetails')]
+    public function evenementDetails(): Response
+    {
+        return $this->render('guest/tempo.html.twig', [
+        ]);
+    }
+
 }

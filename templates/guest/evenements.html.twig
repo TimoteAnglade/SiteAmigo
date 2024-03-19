@@ -40,8 +40,34 @@
     <div class="listesPasses"> <!-- ⌃ -->
         {% set compteur = 0 %}
         {% for annee in past %}
-            <a onclick="developper({{ compteur }}, {{ annees[compteur] }})">⌄ {{ annees[compteur] }}</a>
+            <div class="lien-div" onclick="developper({{ compteur }}, {{ annees[compteur] }})"><h2 id="fleche{{ compteur }}"><i class="fa-solid fa-angle-up">{{ annees[compteur] }}</i></h2></div>
+            <div class="liste-event" id="liste{{ compteur }}">
+                {% for event in annee %}
+                    <div class="carte-event">
+                        <img src="{{ event.affiche }}">
+                        <h4><a href="{{ path("evenementDetails") }}?evenmenet={{ event.nom }}">{{ event.nom }}</a></h4>
+                        <p>{{ event.dateString }}</p>
+                    </div>
+                {% endfor %}
+            </div>
             {% set compteur = compteur + 1 %}
         {% endfor %}
     </div>
+
+    <script>
+        let collapsed = true;
+        function developper(id, annee) {
+            let div2 = document.getElementById("fleche"+id);
+            let div1 = document.getElementById("liste"+id);
+            if(collapsed) {
+                collapsed = false;
+                div1.style.display = "flex";
+                div2.innerHTML = '<i class="fa-solid fa-angle-down">'+annee+'</i>';
+            } else {
+                collapsed = true;
+                div1.style.display = "none";
+                div2.innerHTML = '<i class="fa-solid fa-angle-up">'+annee+'</i>';
+            }
+        }
+    </script>
 {% endblock %}
