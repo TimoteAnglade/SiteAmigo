@@ -1,0 +1,40 @@
+Index: templates/guest/evenements.html.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends 'base.html.twig' %}\r\n{% block title %}{% endblock %}\r\n{% block stylesheets %}\r\n    <link href=\"/css/evenement.css\" rel=\"stylesheet\" type=\"text/css\"/>\r\n{% endblock %}\r\n{% block body %}\r\n    <div class=\"gros-evenements\">\r\n        {% for paire in upcoming %}\r\n                <div class=\"conteneur-gros-evenements\">\r\n            {% for event in paire %}\r\n                <div class=\"gros-evenement\">\r\n                    <div class=\"moitie\">\r\n                        <img src=\"{{ event.affiche }}\">\r\n                    </div>\r\n                    <div class=\"moitie\">\r\n                        <h1>{{ event.nom}}</h1>\r\n                        <p><span>Date de l'évènement: {{ event.dateString }}</span></p>\r\n                        <p><span class=\"petit-titre\">Emplacement de l'évènement:</span> <br/>{{ event.aLieuA.nom }}<br/><span class=\"petit-texte\">{{ event.aLieuA.adresse }}</span></p>\r\n                        {% if(event.isLien) %}\r\n                        <a href=\"{{ event.lienInscription }}\">Inscription</a>\r\n                        {% endif %}\r\n                        <br>\r\n                        {% if event.nbEntreprises != 0 %}\r\n                            <p><span>Entreprises participantes : </span></p>\r\n                            <div class=\"tags\">\r\n                                {% for entreprise in event.entreprisesParticipantes %}\r\n                                        <div class=\"tag\">\r\n                                            <span class=\"dot\" style=\"background-image: url('{{ entreprise.logo }}');\"></span>{{ entreprise.nom }}\r\n                                        </div>\r\n                                {% endfor %}\r\n                            </div>\r\n                        {% endif %}\r\n                    </div>\r\n                </div>\r\n            {% endfor %}\r\n        </div>\r\n        {% endfor %}\r\n    </div>\r\n\r\n    <div class=\"listesPasses\"> <!-- ⌃ -->\r\n        {% set compteur = 0 %}\r\n        {% for annee in past %}\r\n            <a onclick=\"developper({{ compteur }}, {{ annees[compteur] }})\">⌄ {{ annees[compteur] }}</a>\r\n            {% set compteur = compteur + 1 %}\r\n        {% endfor %}\r\n    </div>\r\n{% endblock %}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/guest/evenements.html.twig b/templates/guest/evenements.html.twig
+--- a/templates/guest/evenements.html.twig	
++++ b/templates/guest/evenements.html.twig	
+@@ -40,8 +40,27 @@
+     <div class="listesPasses"> <!-- ⌃ -->
+         {% set compteur = 0 %}
+         {% for annee in past %}
+-            <a onclick="developper({{ compteur }}, {{ annees[compteur] }})">⌄ {{ annees[compteur] }}</a>
++            <a onclick="developper({{ compteur }}, {{ annees[compteur] }})" id="liste{{ compteur }}">⌄ {{ annees[compteur] }}</a>
++
++
+             {% set compteur = compteur + 1 %}
+         {% endfor %}
+     </div>
++
++    <script>
++        let collapsed = true;
++        function developper(id, annee) {
++            let div1 = document.getElementById("fleche"+id);
++            let div2 = document.getElementById("liste"+id);
++            if(collapsed) {
++                collapsed = false;
++                div1.style.display = "block";
++                div2.innerHTML = "⌃"+annee;
++            } else {
++                collapsed = true;
++                div1.style.display = "none";
++                div2.innerHTML = "⌄"+annee;
++            }
++        }
++    </script>
+ {% endblock %}
+\ No newline at end of file
