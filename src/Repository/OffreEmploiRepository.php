@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\NiveauDetude;
 use App\Entity\OffreEmploi;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -46,12 +47,12 @@ class OffreEmploiRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findByNiveauDetude($niveau): ?OffreEmploi
+    public function findByNiveauDetude($niveau): array
     {
         return $this->createQueryBuilder('o')
-            ->join('NiveauDetude', 'n')
-            ->andWhere('n.libelle = :niv')
-            ->setParameter('niv', $niveau)
+            ->join('o.pourNiveauDetude', 'n')
+            ->andWhere('n.libelle = :libelle')
+            ->setParameter('libelle', $niveau)
             ->getQuery()
             ->getResult();
     }

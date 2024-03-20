@@ -45,4 +45,17 @@ class EntrepriseRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findMiageXEntreprise(): ?array
+    {
+        //select * from entreprise e inner join evenement e2 on e2.participeA = e.id
+        $liste = $this->findAll();
+        $result = array();
+        foreach ($liste as $item) {
+            if(sizeof($item->getEntrepriseEvenement())) {
+                $result[] = $item;
+            }
+        }
+        return $result;
+    }
 }

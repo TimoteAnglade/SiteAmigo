@@ -26,7 +26,7 @@ class LogModif
 
     #[ORM\ManyToOne(inversedBy: 'logs')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?typeRequete $type = null;
+    private ?TypeRequete $type = null;
 
     public function getId(): ?int
     {
@@ -76,12 +76,12 @@ class LogModif
         return $this;
     }
 
-    public function getType(): ?typeRequete
+    public function getType(): ?TypeRequete
     {
         return $this->type;
     }
 
-    public function setType(?typeRequete $type): static
+    public function setType(?TypeRequete $type): static
     {
         $this->type = $type;
 

@@ -31,6 +31,12 @@ class OffreEmploi
     #[ORM\JoinColumn(nullable: false)]
     private ?string $mailContact = null;
 
+    #[ORM\Column]
+    private ?bool $isRemunere = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $telContact = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,6 +105,42 @@ class OffreEmploi
     public function setMailContact(string $mailContact): static
     {
         $this->mailContact = $mailContact;
+
+        return $this;
+    }
+
+    public function getDureeStage(): ?string
+    {
+        $debut = $this->pourNiveauDetude->getDebutStage();
+        $fin = $this->pourNiveauDetude->getFinStage();
+        return $debut->diff($fin)->format("%m mois et %d jours");
+    }
+
+    public function getTypePrestation(): ?string
+    {
+        return ucfirst($this->getPourNiveauDetude()->getTypePrestation()->getLibelle());
+    }
+
+    public function isIsRemunere(): ?bool
+    {
+        return $this->isRemunere;
+    }
+
+    public function setIsRemunere(bool $isRemunere): static
+    {
+        $this->isRemunere = $isRemunere;
+
+        return $this;
+    }
+
+    public function getTelContact(): ?string
+    {
+        return $this->telContact;
+    }
+
+    public function setTelContact(string $telContact): static
+    {
+        $this->telContact = $telContact;
 
         return $this;
     }

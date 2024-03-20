@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\LieuEvenementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: LieuEvenementRepository::class)]
 class LieuEvenement
@@ -22,8 +24,15 @@ class LieuEvenement
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
-    #[ORM\OneToOne(mappedBy: 'aLieuA', cascade: ['persist', 'remove'])]
-    private ?Evenement $evenements = null;
+
+    #[ORM\OneToMany(targetEntity: Evenement::class, mappedBy: 'aLieuA', orphanRemoval: true)]
+    private Collection $evenements;
+
+
+    public function __construct()
+    {
+        $this->evenements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -73,19 +82,29 @@ class LieuEvenement
         return $this;
     }
 
-    public function getEvenements(): ?Evenement
+    public function getEvenements(): ?Collection
     {
         return $this->evenements;
     }
 
-    public function setEvenements(Evenement $evenements): static
+    public function addEvenements(Evenement $evenement): static
     {
-        // set the owning side of the relation if necessary
-        if ($evenements->getALieuA() !== $this) {
-            $evenements->setALieuA($this);
+        if (!$this->evenements->contains($evenement)) {
+            $this->evenements->add($evenement);
+            $evenement->setALieuA($this);
         }
 
-        $this->evenements = $evenements;
+        return $this;
+    }
+
+    public function removeEvenements(Evenement $evenement): static
+    {
+        if ($this->evenements->removeElement($evenement)) {
+            // set the owning side to null (unless already changed)
+            if ($evenement->getALieuA() === $this) {
+                $evenement->setALieuA(null);
+            }
+        }
 
         return $this;
     }

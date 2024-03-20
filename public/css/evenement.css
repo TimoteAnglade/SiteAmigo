@@ -4,6 +4,9 @@
     --primary: #3F4E9E;
     --secondary: #a8acc2;
     --accent: #9398b9;
+}
+
+main {
     font-weight: 600;
 }
 
@@ -88,8 +91,12 @@
 }
 
 .liste-event {
-    display: flex;
+    display: none;
+    gap:20px;
+}
 
+.liste-passes {
+    margin: 15px;
 }
 
 .lien-div {

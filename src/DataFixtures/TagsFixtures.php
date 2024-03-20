@@ -22,6 +22,12 @@ class TagsFixtures extends Fixture
 
         $textes[$i] = new Tags();
         $textes[$i]
+            ->setCouleur("00EE77")
+            ->setLibelle("Système d'information");
+        $this->addReference('tagSI', $textes[$i++]);
+
+        $textes[$i] = new Tags();
+        $textes[$i]
             ->setCouleur("FFA500")
             ->setLibelle("ESN");
         $this->addReference('tagESN', $textes[$i++]);

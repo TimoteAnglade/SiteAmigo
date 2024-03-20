@@ -50,7 +50,7 @@ class Evenement
     #[ORM\Column(length: 255)]
     private ?string $afficheFerme = null;
 
-    #[ORM\OneToOne(inversedBy: 'evenements', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'evenements')]
     #[ORM\JoinColumn(nullable: false)]
     private ?LieuEvenement $aLieuA = null;
 

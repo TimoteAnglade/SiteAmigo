@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <h1>Evenement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evenement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ evenement.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Affiche</th>
+                <td>{{ evenement.affiche }}</td>
+            </tr>
+            <tr>
+                <th>TarifLibre</th>
+                <td>{{ evenement.tarifLibre }}</td>
+            </tr>
+            <tr>
+                <th>TarifMembre</th>
+                <td>{{ evenement.tarifMembre }}</td>
+            </tr>
+            <tr>
+                <th>DatePublication</th>
+                <td>{{ evenement.datePublication ? evenement.datePublication|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ evenement.description }}</td>
+            </tr>
+            <tr>
+                <th>LienInscription</th>
+                <td>{{ evenement.lienInscription }}</td>
+            </tr>
+            <tr>
+                <th>DateLimiteInscription</th>
+                <td>{{ evenement.dateLimiteInscription ? evenement.dateLimiteInscription|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PlacesRestantes</th>
+                <td>{{ evenement.placesRestantes }}</td>
+            </tr>
+            <tr>
+                <th>AfficheFerme</th>
+                <td>{{ evenement.afficheFerme }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_evenement_index') }}">back to list</a>
+
+    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
+
+    {{ include('evenement/_delete_form.html.twig') }}
+{% endblock %}

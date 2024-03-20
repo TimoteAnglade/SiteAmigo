@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LieuEvenement index{% endblock %}
+
+{% block body %}
+    <h1>LieuEvenement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lieu_evenement in lieu_evenements %}
+            <tr>
+                <td>{{ lieu_evenement.id }}</td>
+                <td>{{ lieu_evenement.label }}</td>
+                <td>{{ lieu_evenement.nom }}</td>
+                <td>{{ lieu_evenement.adresse }}</td>
+                <td>
+                    <a href="{{ path('app_lieu_evenement_show', {'id': lieu_evenement.id}) }}">show</a>
+                    <a href="{{ path('app_lieu_evenement_edit', {'id': lieu_evenement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lieu_evenement_new') }}">Create new</a>
+{% endblock %}

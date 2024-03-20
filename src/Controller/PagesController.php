@@ -32,22 +32,19 @@ class PagesController extends textesDynamiquesController
     #[Route('/miage', name: 'miage')]
     public function index(TexteDynamiqueRepository $repoTextes): Response
     {
-        return $this->render('guest/index.html.twig', [
+        return $this->render('guest/miage.html.twig', [
             'controller_name' => 'PagesController',
             'textes' => $this->getTextesDico($repoTextes, "accueil"),
         ]);
     }
 
     #[Route('/offresetalternances', name: 'offresetalternances')]
-    public function offres(TexteDynamiqueRepository $repoTextes, OffreEmploiRepository $repoOffres): Response
+    public function offres(TexteDynamiqueRepository $repoTextes, OffreEmploiRepository $repoOffres, Request $request): Response
     {
-        $requete = $this->requestStack->getCurrentRequest();
-        $niveau = $requete->get('niveau');
-        dump($niveau);
-        if(is_null($niveau)) {
+        $niveau = $request->query->get('niveau');
+
+        if(!$offresRecherchees = $repoOffres->findByNiveauDetude($niveau)){
             $offresRecherchees = $repoOffres->findAll();
-        } else {
-            $offresRecherchees = $repoOffres->findByNiveauDetude($niveau);
         }
 
 
@@ -56,6 +53,7 @@ class PagesController extends textesDynamiquesController
             'controller_name' => 'PagesController',
             'textes' => $this->getTextesDico($repoTextes, "offresetalternances"),
             'offres' => $offresRecherchees,
+            'niveau' => $niveau,
         ]);
     }
 
@@ -63,7 +61,9 @@ class PagesController extends textesDynamiquesController
     public function evenements(TexteDynamiqueRepository $repoTextes, EvenementRepository $evenements): Response
     {
         
-        $evenementsEnGros = $evenements->getPast();
+        $evenementsEnGros = $evenements->getUpcoming();
+        $evenementsEnGros[] = $evenements->getPast()[0];
+
 
 
         //DEBUG
@@ -118,17 +118,28 @@ class PagesController extends textesDynamiquesController
     {
 
         $entreprises = $repoEntreprises->findAll();
-        $entreprises[] = $entreprises[0];
-        $entreprises[] = $entreprises[0];
-        $entreprises[] = $entreprises[0];
-        $entreprises[] = $entreprises[0];
-        $entreprises[] = $entreprises[0];
 
 
         return $this->render('guest/entreprises.html.twig', [
             'controller_name' => 'PagesController',
-            'textes' => $this->getTextesDico($repoTextes, "amigo"),
+            'textes' => $this->getTextesDico($repoTextes, "entreprises"),
             'entreprises' => $entreprises,
+            'titre' => "entrepriseTitre",
+        ]);
+    }
+
+    #[Route('/entreprisesmxe', name: 'entreprisesMXE')]
+    public function entreprisesMXE(TexteDynamiqueRepository $repoTextes, EntrepriseRepository $repoEntreprises): Response
+    {
+
+        $entreprises = $repoEntreprises->findMiageXEntreprise();
+
+
+        return $this->render('guest/entreprises.html.twig', [
+            'controller_name' => 'PagesController',
+            'textes' => $this->getTextesDico($repoTextes, "entreprises"),
+            'entreprises' => $entreprises,
+            'titre' => "entrepriseMXEtitre",
         ]);
     }
 

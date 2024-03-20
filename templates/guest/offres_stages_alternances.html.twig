@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}OFFRES ET ALTERNANCES{% endblock %}
-
+{% block stylesheets %}
+    <link href="/css/offres.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
 {% block body %}
-
 
 
 
@@ -16,72 +17,88 @@
                 <h1 class="">Offres de stages</h1>
                 <hr class="style14">
 
-
-
                 <!-- Les boutons permettants de choisir le niveau d'étude -->
                 <div class="col-md-12 text-center">
                     <div class="btn-group btn-group-toggle block-bouton" data-toggle="buttons">
-                        <label class="btn btn-secondary active">
-                            <a href="#?niveau=l3">L3</a>
-                        </label>
-                        <label class="btn btn-secondary">
-                            <a href="#?niveau=m1">M1</a>
-                        </label>
-                        <label class="btn btn-secondary">
-                            <a href="#?niveau=m2">M2</a>
-                        </label>
+                        {% set oui = true %}
+                        <a href="?niveau=L3+MIAGE">
+                            <label class="btn btn-secondary {% if niveau=="L3 MIAGE" %}{% set oui = false %}active{% endif %}">
+                            L3
+                            </label>
+                        </a>
+                        <a href="?niveau=M1+MIAGE">
+                            <label class="btn btn-secondary {% if niveau=="M1 MIAGE" %}{% set oui = false %}active{% endif %}">
+                                M1
+                            </label>
+                        </a>
+                        <a href="?niveau=M2+MIAGE">
+                            <label class="btn btn-secondary {% if niveau=="M2 MIAGE" %}{% set oui = false %}active{% endif %}">
+                                M2
+                            </label>
+                        </a>
+                        <a href="?niveau=tous">
+                            <label class="btn btn-secondary {% if oui %}active{% endif %}">
+                                X
+                            </label>
+                        </a>
                     </div>
                 </div>
-
-
-
-
-
-
-                    {% for offre in offres %}
-                        <div class="carte">
-                            <img src=
-                                 "{{ offre.parEntreprise.logo }}"
-                                 class=""
-                                 alt="img">
-                            <h4><a href="{{ path('entreprises') }}?cible=Sopra+Steria">{{ offre.parEntreprise.nom }}</a></h4>
-                            <hr/>
-                            <div class="">
-                                <h4 class="">
-                                    {{ offre.nomPoste }}
-                                </h4>
-
-                                <p class="">
-                                    {{ offre.description }}
-                                </p>
-                                <p class="">
-                                    <small class="text-muted">
-                                        {{ offre.parEntreprise.telephoneEspace }}
-                                         |
-                                        {{ offre.mailContact }}
-                                    </small>
-                                </p>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
+    </div>
+
+
+
+
+
+    <div class="container-cartes">
+    {% for offre in offres %}
+        <div class="image-container">
+            <img src="{{ offre.parEntreprise.logo }}" alt="Votre image">
+            <div class="typePrestation">{{ offre.typePrestation }}</div>
+            <div class="info">
+                <h2 class="title">{{ offre.nomPoste }}</h2>
+                <h5>{{ offre.parEntreprise.nom }}</h5>
+                <p class="description">{{ offre.description }}</p>
+                <hr>
+                <div class="details">
+                    <p><span>Durée du stage : </span>{{ offre.dureeStage }}</p>
+                    <p><span>Prestation : </span>{{ offre.typePrestation }}</p>
+                    <p><span>Gratifications : </span> {% if offre.isRemunere %}Rémunéré{% else %}Non-Rémunéré{% endif %}</p>
+                </div>
+                <h3>Contactez-nous</h3>
+                <div class="icons">
+                    <a href="mailto:{{ offre.mailContact }}"><img
+                                src="https://png.pngtree.com/png-vector/20190927/ourmid/pngtree-email-icon-png-image_1757854.jpg"
+                                alt="Mail"></a>
+                    <a target="_blank" href="{{ offre.parEntreprise.linkedIn }}"><img
+                                src="https://toppng.com/uploads/preview/linkedin-logo-black-png-linkedin-icon-black-and-white-11562906557v2906x3pr2.png"
+                                alt="LinkedIn"></a>
+                    <a href="#"><img
+                                src="https://www.kindpng.com/picc/m/346-3461748_telephone-logo-png-telephone-icon-png-transparent-png.png"
+                                alt="Téléphone"></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    </div>
     </div>
 
 {% endblock %}

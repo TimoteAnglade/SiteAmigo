@@ -5,7 +5,12 @@
         <a href="{{ path('miage') }}">Miage</a>
         <a href="{{ path('evenements') }}">Évènements</a>
         <a href="{{ path('entreprises') }}">Entreprises</a>
-        <a href="#">Offre stages et alternances</a>
+        <a href="{{ path('offresetalternances') }}">Offre stages et alternances</a>
+        {% if is_granted('ROLE_ADMINISTRATEUR') %}
+                <a href="{{ path('app_logout') }}">Se déconnecter</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Accès administrateur</a>
+        {% endif %}
     </nav>
     <!-- Message de copyright -->
     &copy; 2024 Anglade Timoté, Ricoux Alexis, Van Der Stuyft Rayane Tous droits réservés.

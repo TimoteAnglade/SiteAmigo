@@ -6,6 +6,25 @@
         </a>
 
         <ul class="navbar-nav ms-auto navbar-expand"> <!-- ms-auto pour aligner à droite -->
+
+            {% if is_granted('ROLE_ADMINISTRATEUR') %}
+                <li class="nav-item">
+                    <div class="nav-link" style="cursor: default">Editer :</div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_evenement_index') }}">Évènements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_lieu_evenement_index') }}">Lieux d'évènements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_entreprise_index') }}">Entreprises</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link" style="cursor: default; color: black">|</div>
+                </li>
+            {% endif %}
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('miage') }}">Miage</a>
             </li>

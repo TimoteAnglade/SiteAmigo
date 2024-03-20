@@ -17,6 +17,7 @@ class NiveauDetudeFixtures extends Fixture implements DependentFixtureInterface
 
         $l3 = new NiveauDetude();
         $l3->setLibelle("L3 MIAGE")
+            ->setId(1)
             ->setDebutStage(date_create("2024-04-02"))
             ->setFinStage(date_create("2024-07-02"))
             ->setTypePrestation($stage);
@@ -24,6 +25,7 @@ class NiveauDetudeFixtures extends Fixture implements DependentFixtureInterface
 
         $m1 = new NiveauDetude();
         $m1->setLibelle("M1 MIAGE")
+            ->setId(2)
             ->setDebutStage(date_create("2024-09-01"))
             ->setFinStage(date_create("2025-09-01"))
             ->setTypePrestation($alternance);
@@ -31,6 +33,7 @@ class NiveauDetudeFixtures extends Fixture implements DependentFixtureInterface
 
         $m2 = new NiveauDetude();
         $m2->setLibelle("M2 MIAGE")
+            ->setId(3)
             ->setDebutStage(date_create("2024-09-01"))
             ->setFinStage(date_create("2025-09-01"))
             ->setTypePrestation($alternance);

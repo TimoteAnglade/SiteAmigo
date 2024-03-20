@@ -45,6 +45,9 @@ class Entreprise
     #[ORM\ManyToMany(targetEntity: Evenement::class, inversedBy: 'entreprisesParticipantes')]
     private Collection $entrepriseEvenement;
 
+    #[ORM\Column(length: 255)]
+    private ?string $linkedIn = null;
+
     public function __construct()
     {
         $this->offreEmplois = new ArrayCollection();
@@ -214,6 +217,7 @@ class Entreprise
     {
         if (!$this->entrepriseEvenement->contains($entrepriseEvenement)) {
             $this->entrepriseEvenement->add($entrepriseEvenement);
+
         }
 
         return $this;
@@ -237,5 +241,22 @@ class Entreprise
             }
         }
         return $result;
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom;
+    }
+
+    public function getLinkedIn(): ?string
+    {
+        return $this->linkedIn;
+    }
+
+    public function setLinkedIn(string $linkedIn): static
+    {
+        $this->linkedIn = $linkedIn;
+
+        return $this;
     }
 }

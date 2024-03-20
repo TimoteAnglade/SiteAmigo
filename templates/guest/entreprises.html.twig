@@ -5,10 +5,13 @@
     <link href="/css/entreprises.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block body %}
-    <h1 class="page-title">Les entreprises associées</h1>
+    <h1 class="page-title">{{ textes[titre] }}</h1>
     <div class="search-container">
-        <input type="text" class="search-input" placeholder="Entrer un nom d'entreprise">
-        <button class="search-button">Rechercher</button>
+        {% if titre=="entrepriseTitre" %}
+            <a href="{{ path('entreprisesMXE') }}" class="search-button">Voir uniquement Miage X Entreprises</a>
+        {% else %}
+            <a href="{{ path('entreprises') }}" class="search-button">Voir toutes les entreprises</a>
+        {% endif %}
     </div>
     {% set compteur = 0 %}
     {% for entreprise in entreprises %}
@@ -26,9 +29,14 @@
                             {% endfor %}
                         </div>
                         <div class="social-links">
-                            <a href="{{ entreprise.site }}">Visiter leur site</a>
+                            <a target="_blank" href="{{ entreprise.site }}">Visiter leur site</a>
+                            <a target="_blank" href="{{ entreprise.linkedIn }}"><img
+                                        src="{{ asset("/images/assets/logoLinkedIn.png") }}"
+                                        alt="LinkedIn"
+                                        style="width: 20px;">
+                            </a>
                         </div>
-                        <p class="afficherplus" id="details{{ compteur }}">{{ entreprise.description }}</p>
+                        <p class="afficherplus text-justify" id="details{{ compteur }}">{{ entreprise.description }}</p>
                     </div>
                     <!-- Bouton collapsible -->
                     <div class="collapsible" id="fleche{{ compteur }}" onclick="toggleVisibility('details{{ compteur }}', 'fleche{{ compteur }}')">↓</div>

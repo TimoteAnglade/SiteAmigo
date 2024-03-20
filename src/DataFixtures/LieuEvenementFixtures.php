@@ -23,8 +23,15 @@ class LieuEvenementFixtures extends Fixture
             ->setLabel("Bowling et salle de jeux")
             ->setAdresse("3055 Rte de Sandillon, 45560 Saint-Denis-en-Val");
         $manager->persist($factory);
-
         $this->addReference('factory', $factory);
+
+        $rueDeBourgogne = new LieuEvenement();
+        $rueDeBourgogne->setNom("Rue de Bourgogne")
+            ->setLabel("Bowling et salle de jeux")
+            ->setAdresse("Rue de bourgogne, 45000 Orléans");
+        $manager->persist($rueDeBourgogne);
+
+        $this->addReference('bourgogne', $rueDeBourgogne);
 
         $manager->flush();
     }
